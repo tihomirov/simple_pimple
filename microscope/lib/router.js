@@ -1,17 +1,34 @@
 Router.configure({
-    layoutTemplate: 'layout',
-    loadingTemplate: 'loading',
-    waitOn: function() {return Meteor.subscribe('posts');}
+	layoutTemplate: 'layout',
+	loadingTemplate: 'loading',
+	waitOn: function () {
+		return Meteor.subscribe('posts');
+	}
 });
 
-Router.map(function() {
+Router.map(function () {
 
-    this.route('postsList', {path: '/'});
+	this.route('postsList', {path: '/'});
 
-    this.route('postPage', {
-        path: '/posts/:_id',
-        data: function(){ return Posts.findOne(this.params._id) }
-    });
+	this.route('postPage', {
+		path: '/posts/:_id',
+		data: function () {
+			return Posts.findOne(this.params._id)
+		}
+	});
+
+	this.route('verifyEmail' ,{
+		path: '/verify-email/:token',
+		action: function () {
+			Accounts.verifyEmail( this.params.token, ( error ) =>{
+				if ( error ) {
+					console.log(error)
+				} else {
+					console.log('verify success')
+				}
+			});
+		}
+	})
 
 });
 

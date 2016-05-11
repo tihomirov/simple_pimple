@@ -11,6 +11,8 @@ Template.signUp.events({
 				Meteor.call('sendVerificationLink', (error, response) => {
 					if (error) {
 						console.log(error)
+					} else {
+						console.log('Resend with no error')
 					}
 				});
 			}
