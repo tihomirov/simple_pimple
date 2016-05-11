@@ -1,0 +1,14 @@
+<template name="currentUserManage">
+
+    <div class="dropdown pull-right login">
+        <a href="#" class="dropdown-toggle">{{loginLabel}}<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            {{#if currentUser}}
+                {{>currentUserDropdown}}
+            {{else}}
+                {{>signIn}}
+            {{/if}}
+        </ul>
+    </div>
+
+</template>

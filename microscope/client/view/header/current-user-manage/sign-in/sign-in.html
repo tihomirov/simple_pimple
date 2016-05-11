@@ -1,0 +1,19 @@
+<template name="signIn">
+    <div class="sign-in-form">
+        <div>
+            <input id="login-email" type="email">
+            <label for="login-email">Email</label>
+        </div>
+        <div>
+            <input id="login-password" type="password">
+            <label for="login-password">Пароль</label>
+        </div>
+        <a href="#" id="login-button">Войти</a>
+        <a href="#" class="sign-up-button pull-right">Sign Up</a>
+    </div>
+
+    <div>
+        {{>signUp}}
+    </div>
+
+</template>
