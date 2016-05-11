@@ -19,7 +19,11 @@ Router.map(function () {
 
 	this.route('verifyEmail' ,{
 		path: '/verify-email/:token',
+		data: function () {
+			return {token: this.params.token}
+		},
 		action: function () {
+			console.log('waitOn')
 			Accounts.verifyEmail( this.params.token, ( error ) =>{
 				if ( error ) {
 					console.log(error)
@@ -27,6 +31,7 @@ Router.map(function () {
 					console.log('verify success')
 				}
 			});
+			this.render();
 		}
 	})
 

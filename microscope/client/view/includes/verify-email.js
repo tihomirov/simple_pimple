@@ -9,3 +9,10 @@ Template.verifyEmail.events({
 		});
 	}
 });
+
+Template.verifyEmail.helpers({
+	message: function() {
+		console.log('it\'s helper for verifyEmail')
+		console.log(this)
+	}
+});
