@@ -1,40 +1,39 @@
 Router.configure({
 	layoutTemplate: 'layout',
 	loadingTemplate: 'loading',
+	notFoundTemplate: 'notFound',
 	waitOn: function () {
 		return Meteor.subscribe('posts');
 	}
 });
 
-Router.map(function () {
-
-	this.route('postsList', {path: '/'});
-
-	this.route('postPage', {
-		path: '/posts/:_id',
-		data: function () {
-			return Posts.findOne(this.params._id)
-		}
-	});
-
-	this.route('verifyEmail' ,{
-		path: '/verify-email/:token',
-		data: function () {
-			return {token: this.params.token}
-		},
-		action: function () {
-			console.log('waitOn')
-			Accounts.verifyEmail( this.params.token, ( error ) =>{
-				if ( error ) {
-					console.log(error)
-				} else {
-					console.log('verify success')
-				}
-			});
-			this.render();
-		}
-	})
-
+Router.route('/', {name: 'postsList'});
+Router.route('/users', {name: 'users'});
+Router.route('/createPost', {name: 'createPost'});
+Router.route('/posts/:_id', {
+	name: 'postPage',
+	data: function () {
+		return Posts.findOne(this.params._id)
+	}
+});
+Router.route('verifyEmail', {
+	path: '/verify-email/:token',
+	data: function () {
+		return this.params.token;
+	}
 });
 
 Router.onBeforeAction('loading');
+Router.onBeforeAction(requireLogin, {only: 'createPost'});
+
+function requireLogin() {
+	if (!Meteor.user()) {
+		if (Meteor.loggingIn()) {
+			this.render(this.loadingTemplate);
+		} else {
+			this.render('accessDenied');
+		}
+	} else {
+		this.next();
+	}
+}

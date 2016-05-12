@@ -1,0 +1,40 @@
+<template name="signUp">
+    <div id="myModal" class="modal fade">
+        <form class="main form">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Sign Up Form</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <input class="email" type="email" name="email">
+                            <label for="email">Email</label>
+                        </div>
+                        <div>
+                            <input class="first-name" type="text" name="login">
+                            <label for="firstName">Login</label>
+                        </div>
+                        <div>
+                            <input class="first-name" type="text" name="firstName">
+                            <label for="firstName">First Name</label>
+                        </div>
+                        <div>
+                            <input class="last-name" type="text" name="lastName">
+                            <label for="lastName">Last Name</label>
+                        </div>
+                        <div>
+                            <input class="password validate" type="password" name="password">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="register-btn" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

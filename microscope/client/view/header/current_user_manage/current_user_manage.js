@@ -1,8 +1,7 @@
 Template.currentUserManage.helpers({
 	loginLabel: () => {
-		let userName = Meteor.user() && Meteor.user().username;
-		if(userName){
-			return userName;
+		if(Meteor.user()){
+			return Meteor.user().profile.firstName + ' ' + Meteor.user().profile.lastName;
 		} else {
 			return 'Sign In'
 		}

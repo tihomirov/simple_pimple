@@ -1,0 +1,15 @@
+<template name="postsList">
+
+    {{#if currentUser}}
+        <div class="post create-post-btn">
+            <a href="{{pathFor 'createPost'}}">Create New Post</a>
+        </div>
+    {{/if}}
+
+    <div class="posts">
+        {{#each posts}}
+            {{> postItem}}
+        {{/each}}
+    </div>
+
+</template>

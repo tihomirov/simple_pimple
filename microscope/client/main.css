@@ -4,7 +4,7 @@ html, body {
 .sign-in-form{
     padding: 10px;
 }
-.grid-block, .main, .post, .comments li, .comment-form {
+.grid-block, .main, .post, .user-container, .comments li, .comment-form {
     background: #fff;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
