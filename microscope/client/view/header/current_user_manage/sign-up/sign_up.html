@@ -1,5 +1,5 @@
 <template name="signUp">
-    <div id="myModal" class="modal fade">
+    <div class="modal fade sign-up-modal">
         <form class="main form">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -8,24 +8,24 @@
                         <h4 class="modal-title">Sign Up Form</h4>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <input class="email" type="email" name="email">
-                            <label for="email">Email</label>
+                        <div class="email">
+                            <input type="email" name="email">
+                            <label for="email">Email</label><span class="label-danger" role="alert">Ololo</span>
                         </div>
-                        <div>
-                            <input class="first-name" type="text" name="login">
+                        <div class="first-name">
+                            <input type="text" name="login">
                             <label for="firstName">Login</label>
                         </div>
-                        <div>
-                            <input class="first-name" type="text" name="firstName">
+                        <div class="first-name">
+                            <input type="text" name="firstName">
                             <label for="firstName">First Name</label>
                         </div>
-                        <div>
-                            <input class="last-name" type="text" name="lastName">
+                        <div class="last-name">
+                            <input type="text" name="lastName">
                             <label for="lastName">Last Name</label>
                         </div>
-                        <div>
-                            <input class="password validate" type="password" name="password">
+                        <div class="password validate">
+                            <input type="password" name="password">
                             <label for="password">Password</label>
                         </div>
                     </div>

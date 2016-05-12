@@ -8,6 +8,6 @@ Template.signIn.events({
 		});
 	},
 	'click .sign-up-button': function(){
-		$("#myModal").modal('show');
+		$(".sign-up-modal").modal('show');
 	}
 });
