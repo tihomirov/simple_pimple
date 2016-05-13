@@ -8,10 +8,18 @@ Template.createPost.events({
 		};
 
 		Meteor.call('postInsert', post, function(error, result) {
-			if (error)
-				return alert(error.reason);
+			if (error) {
+				throwError(error.reason);
+				return;
+			}
 
-			Router.go('postPage', {_id: result._id});
+			if (result.postExists){
+				throwError('Post Already Exist');
+				Router.go('postPage', {_id: result._id})
+			}
+
+				Router.go('postPage', {_id: result._id});
+
 		});
 
 	}

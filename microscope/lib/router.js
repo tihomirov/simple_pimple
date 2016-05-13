@@ -3,7 +3,7 @@ Router.configure({
 	loadingTemplate: 'loading',
 	notFoundTemplate: 'notFound',
 	waitOn: function () {
-		return Meteor.subscribe('posts');
+		return [Meteor.subscribe('posts'), Meteor.subscribe('comments')];
 	}
 });
 
@@ -16,6 +16,10 @@ Router.route('/posts/:_id', {
 		return Posts.findOne(this.params._id)
 	}
 });
+Router.route('/posts/:_id/edit', {
+	name: 'postEdit',
+	data: function() { return Posts.findOne(this.params._id); }
+});
 Router.route('verifyEmail', {
 	path: '/verify-email/:token',
 	data: function () {
@@ -25,6 +29,10 @@ Router.route('verifyEmail', {
 
 Router.onBeforeAction('loading');
 Router.onBeforeAction(requireLogin, {only: 'createPost'});
+Router.before(function() {
+	clearErrors();
+	this.next();
+});
 
 function requireLogin() {
 	if (!Meteor.user()) {
