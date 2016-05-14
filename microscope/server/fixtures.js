@@ -31,7 +31,8 @@ if (Posts.find().count() === 0 && Meteor.users.find().count() === 0) {
 		title: 'Introducing Telescope',
 		authorId: sa._id,
 		url: 'http://sachagreif.com/introducing-telescope/',
-		submitted: now - 7 * 3600 * 1000
+		submitted: now - 7 * 3600 * 1000,
+		commentsCount: 2
 	});
 
 	Comments.insert({
@@ -58,13 +59,15 @@ if (Posts.find().count() === 0 && Meteor.users.find().count() === 0) {
 		title: 'Meteor',
 		authorId: sa._id,
 		url: 'http://meteor.com',
-		submitted: now - 10 * 3600 * 1000
+		submitted: now - 10 * 3600 * 1000,
+		commentsCount: 0
 	});
 
 	Posts.insert({
 		title: 'The Meteor Book',
 		authorId: tom._id,
 		url: 'http://themeteorbook.com',
-		submitted: now - 12 * 3600 * 1000
+		submitted: now - 12 * 3600 * 1000,
+		commentsCount: 0
 	});
 }

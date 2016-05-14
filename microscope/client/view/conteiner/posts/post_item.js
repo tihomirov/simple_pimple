@@ -19,8 +19,5 @@ Template.postItem.helpers({
 		}
 
 		return author.profile.firstName + ' ' + author.profile.lastName;
-	},
-	commentsCount: function() {
-		return Comments.find({postId: this._id}).count();
 	}
 });
