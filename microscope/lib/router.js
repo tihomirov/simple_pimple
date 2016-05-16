@@ -49,7 +49,7 @@ PostsListController = RouteController.extend({
 		return parseInt(this.params.postsLimit) || this.increment;
 	},
 	findOptions: function() {
-		return {sort: {votes: -1}, limit: this.limit()};
+		return {sort: this.sort, limit: this.limit()};
 	},
 	subscriptions: function() {
 		this.postsSub = Meteor.subscribe('posts', this.findOptions());
@@ -62,15 +62,36 @@ PostsListController = RouteController.extend({
 		var nextPath = this.route.path({postsLimit: this.limit() + this.increment});
 		return {
 			posts: this.posts(),
-			ready: this.postsSub.ready,
-			nextPath: hasMore ? nextPath : null
+			nextPath: hasMore ? this.nextPath() : null
 		};
 	}
 });
+NewPostsListController = PostsListController.extend({
+	sort: {submitted: -1, _id: -1},
+	nextPath: function() {
+		return Router.routes.newPosts.path({postsLimit: this.limit() + this.increment})
+	}
+});
+BestPostsListController = PostsListController.extend({
+	sort: {votes: -1, submitted: -1, _id: -1},
+	nextPath: function() {
+		return Router.routes.bestPosts.path({postsLimit: this.limit() + this.increment})
+	}
+});
 
-Router.route('/:postsLimit?', {
-	name: 'postsList',
-	controller: PostsListController
+Router.route('/', {
+	name: 'home',
+	controller: NewPostsListController
+});
+
+Router.route('/new/:postsLimit?', {
+	name: 'newPosts',
+	controller: NewPostsListController
+});
+
+Router.route('/best/:postsLimit?', {
+	name: 'bestPosts',
+	controller: BestPostsListController
 });
 
 Router.onBeforeAction('loading');

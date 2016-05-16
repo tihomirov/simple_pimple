@@ -1,12 +1,20 @@
 <template name="header">
-    <header class="navbar">
-        <div class="navbar-inner">
+    <header class="navbar navbar-default">
+        <div class="navbar-header">
 
-            <a class="brand" href="{{pathFor 'postsList'}}">SimplePimple</a>
+            <a class="brand" href="{{pathFor 'home'}}">Microscope</a>
             <a class="brand" href="{{pathFor 'users'}}">Users</a>
 
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav">
+
+                    <li class="{{activeRouteClass 'home' 'newPosts'}}">
+                        <a href="{{pathFor 'newPosts'}}">New</a>
+                    </li>
+                    <li class="{{activeRouteClass 'bestPosts'}}">
+                        <a href="{{pathFor 'bestPosts'}}">Best</a>
+                    </li>
+
                     {{#if currentUser}}
                         <li class="dropdown">
                             {{> notifications}}
