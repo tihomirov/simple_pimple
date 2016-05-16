@@ -29,3 +29,4 @@ percolate:find-from-publication
 audit-argument-checks
 check
 ejson
+multiply:iron-router-progress

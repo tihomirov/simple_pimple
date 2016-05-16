@@ -5,6 +5,16 @@
             <a class="brand" href="{{pathFor 'postsList'}}">SimplePimple</a>
             <a class="brand" href="{{pathFor 'users'}}">Users</a>
 
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="nav navbar-nav">
+                    {{#if currentUser}}
+                        <li class="dropdown">
+                            {{> notifications}}
+                        </li>
+                    {{/if}}
+                </ul>
+            </div>
+
             {{>currentUserManage}}
 
         </div>

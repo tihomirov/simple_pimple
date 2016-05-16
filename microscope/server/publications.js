@@ -1,5 +1,9 @@
-Meteor.publish('posts', function (query) {
-	return Posts.find(query || {});
+Meteor.publish('posts', function (options) {
+	check(options, {
+		sort: Object,
+		limit: Number
+	});
+	return Posts.find({}, options);
 });
 
 Meteor.publish('comments', function (postId) {
@@ -14,4 +18,13 @@ Meteor.publish(null, function () {
 		profile: 1
 	};
 	return Meteor.users.find({}, {fields: projection});
+});
+
+Meteor.publish('notifications', function() {
+	return Notifications.find({authorId: this.userId, read: false});
+});
+
+Meteor.publish('singlePost', function(id) {
+	check(id, String);
+	return id && Posts.find(id);
 });
